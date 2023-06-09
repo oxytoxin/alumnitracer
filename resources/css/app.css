@@ -1,0 +1,27 @@
+@import '../../vendor/filament/forms/dist/module.esm.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+    html {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    :root.dark {
+        color-scheme: dark;
+    }
+
+}
+
+@layer components {
+    .filament-sidebar-header::before {
+        @apply pointer-events-none absolute inset-x-0 mx-auto h-px w-full bg-gradient-to-r from-gray-200 via-primary-400 to-gray-200 dark:from-gray-700 dark:via-primary-400 dark:to-gray-700;
+        content: '';
+        z-index: 1;
+        bottom: -1px;
+    }
+}
