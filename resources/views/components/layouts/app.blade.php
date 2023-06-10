@@ -4,7 +4,7 @@
 ])
 
 <x-layouts.base :title="$title">
-    <div class="filament-app-layout flex h-full w-full overflow-x-clip">
+    <div class="filament-app-layout flex h-screen w-full overflow-x-clip">
         <div class="filament-sidebar-close-overlay fixed inset-0 z-20 h-full w-full bg-gray-900/50 lg:hidden" x-data="{}" x-cloak x-show="$store.sidebar.isOpen" x-transition.opacity.500ms x-on:click="$store.sidebar.close()"></div>
 
         <x-layouts.app.sidebar.index />
@@ -13,7 +13,7 @@
             <x-topbar />
 
             <div @class([
-                'filament-main-content mx-auto w-full flex-1 px-4 md:px-6 lg:px-8',
+                'filament-main-content mx-auto w-full flex-1 px-4 overflow-y-auto md:px-6 lg:px-8',
                 match (($maxContentWidth ??= config('filament.layout.max_content_width'))) {
                     null, '7xl', '' => 'max-w-7xl',
                     'xl' => 'max-w-xl',
