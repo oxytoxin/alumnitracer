@@ -7,7 +7,19 @@
         </button>
 
         <div class="flex flex-1 items-center justify-between">
-            <div class="flex-1"></div>
+            <div class="flex-1">
+                <p class="hidden md:block">Hello {{ auth()->user()->email }}</p>
+            </div>
+            <div x-data="darkmode" x-cloak>
+                @if (config('filament.dark_mode'))
+                    <button class="border-2 border-primary rounded-full p-1" x-show="theme === 'dark'" x-on:click="close(); mode = 'manual'; theme = 'light'">
+                        <x-heroicon-s-sun class="w-6 text-primary" />
+                    </button>
+                    <button class="border-2 border-primary rounded-full p-1" x-cloak x-show="theme === 'light'" x-on:click="close(); mode = 'manual'; theme = 'dark'">
+                        <x-heroicon-s-moon class="w-6 text-primary" />
+                    </button>
+                @endif
+            </div>
             <x-layouts.app.topbar.user-menu />
         </div>
     </div>
