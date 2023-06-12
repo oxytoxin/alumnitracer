@@ -16,7 +16,7 @@ class AuthController extends Controller
         return redirect()->route('welcome');
     }
 
-    public function emailVerify(Request $request)
+    public function verificationNotification(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
         return back()->with('message', 'Verification link sent!');
