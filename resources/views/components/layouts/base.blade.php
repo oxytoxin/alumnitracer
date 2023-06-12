@@ -54,7 +54,7 @@
 
 </head>
 
-<body class="filament-body min-h-screen dark:bg-gray-900 dark:text-gray-100 overflow-y-auto bg-gray-100 text-gray-900">
+<body class="filament-body font-poppins min-h-screen dark:bg-gray-900 dark:text-gray-100 overflow-y-auto bg-gray-100 text-gray-900">
     {{ $slot }}
     @livewire('notifications')
     @livewireScripts

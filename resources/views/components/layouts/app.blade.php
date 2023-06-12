@@ -31,7 +31,7 @@
                 @endisset
             </div>
 
-            <div class="filament-main-footer shrink-0 py-4">
+            <div class="filament-main-footer shrink-0">
                 <x-footer />
             </div>
         </div>
