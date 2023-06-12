@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('alt_full_name')->nullable()->virtualAs("CONCAT_WS(', ', last_name, CONCAT_WS(' ', first_name, COALESCE(middle_name, ''), COALESCE(suffix, '')))");
             $table->string('post_nominal_designations')->nullable();
             $table->text('address');
-            $table->text('bio');
+            $table->text('bio')->nullable();
             $table->year('year_graduated');
             $table->string('id_number');
             $table->string('contact_number')->nullable();

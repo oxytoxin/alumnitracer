@@ -235,6 +235,12 @@ class ManagePersonalInformation extends Component implements HasForms
         $this->form->model($personalInformation)->saveRelationships();
 
         DB::commit();
+        $this->reset('remarks');
         Notification::make()->title('Changes saved!')->success()->send();
+    }
+
+    public function test()
+    {
+        dd($this->user->personal_information->audits()->count());
     }
 }

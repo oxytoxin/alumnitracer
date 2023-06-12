@@ -2,22 +2,30 @@
 
 namespace App\Models;
 
+use App\Traits\Versionable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Auditable as AuditingAuditable;
+use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * @mixin IdeHelperPersonalInformation
  */
-class PersonalInformation extends Model implements HasMedia
+class PersonalInformation extends Model implements HasMedia, Auditable
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, InteractsWithMedia, AuditingAuditable, Versionable;
 
     protected $casts = [
         'skills' => 'array',
         'hobbies' => 'array',
         'references' => 'array',
+    ];
+
+    protected $auditExclude = [
+        'full_name',
+        'alt_full_name',
     ];
 
     public function registerMediaCollections(): void

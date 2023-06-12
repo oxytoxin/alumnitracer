@@ -1,5 +1,5 @@
 <div x-data>
-
+    <button wire:click="test">TEST</button>
     <div class="bg-white dark:bg-slate-900 dark:border-white p-8 border-2 border-slate-900">
         {{ $this->form }}
     </div>
