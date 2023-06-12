@@ -39,6 +39,47 @@ Alpine.store(
         : 'light',
 )
 
+Alpine.data('darkmode', () => ({
+    mode: null,
+    theme: null,
+    init: function () {
+        this.theme = localStorage.getItem('theme') || (this.isSystemDark() ? 'dark' : 'light')
+        this.mode = localStorage.getItem('theme') ? 'manual' : 'auto'
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+            if (this.mode === 'manual') return
+
+            if (event.matches && (!document.documentElement.classList.contains('dark'))) {
+                this.theme = 'dark'
+
+                document.documentElement.classList.add('dark')
+            } else if ((!event.matches) && document.documentElement.classList.contains('dark')) {
+                this.theme = 'light'
+
+                document.documentElement.classList.remove('dark')
+            }
+        })
+
+        this.$watch('theme', () => {
+            if (this.mode === 'auto') return
+
+            localStorage.setItem('theme', this.theme)
+
+            if (this.theme === 'dark' && (!document.documentElement.classList.contains('dark'))) {
+                document.documentElement.classList.add('dark')
+            } else if (this.theme === 'light' && document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark')
+            }
+
+            this.$dispatch('dark-mode-toggled', this.theme)
+        })
+    },
+
+    isSystemDark: function () {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+    },
+}))
+
 window.addEventListener('dark-mode-toggled', (event) => {
     Alpine.store('theme', event.detail)
 })
@@ -48,6 +89,23 @@ window
     .addEventListener('change', (event) => {
         Alpine.store('theme', event.matches ? 'dark' : 'light')
     })
+
+
+window.printOut = function (data, title, csspath) {
+    var mywindow = window.open('', title, 'height=1000,width=1000');
+    mywindow.document.write('<html><head>');
+    mywindow.document.write('<title>' + title + '</title>');
+    mywindow.document.write(`<link rel="stylesheet" href="` + csspath + `" />`);
+    mywindow.document.write('</head><body >');
+    mywindow.document.write(data);
+    mywindow.document.write('</body></html>');
+    mywindow.document.close();
+    mywindow.focus();
+    setTimeout(() => {
+        mywindow.print();
+    }, 1000);
+    return false;
+}
 
 window.Alpine = Alpine
 
