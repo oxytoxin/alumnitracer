@@ -18,12 +18,13 @@ class WorkExperienceFactory extends Factory
     public function definition(): array
     {
         $date = fake()->dateTimeBetween('-30 years', '-5 years');
+
         return [
             'date_from' => $date->format('Y-m-d'),
             'date_to' => $date->add(DateInterval::createFromDateString('4 years'))->format('Y-m-d'),
             'employer' => fake()->company,
             'designation' => fake()->jobTitle(),
-            'other_details' => []
+            'other_details' => [],
         ];
     }
 }

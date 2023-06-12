@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\EducationalBackground;
+use App\Models\PersonalInformation;
 use App\Models\User;
 use App\Models\WorkExperience;
 use Illuminate\Database\Seeder;
-use App\Models\PersonalInformation;
-use App\Models\EducationalBackground;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PersonalInformationSeeder extends Seeder
 {
@@ -36,7 +35,7 @@ class PersonalInformationSeeder extends Seeder
                 'last_name' => 'Casero',
                 'year_graduated' => 2022,
                 'id_number' => '2018-0356',
-                'contact_number' => '+639086601340'
+                'contact_number' => '+639086601340',
             ]);
         $user->assignRole('alumni');
         User::factory()

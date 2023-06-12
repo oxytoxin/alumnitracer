@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Auth;
 
 use Auth;
-use Filament\Forms\Components\Card;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -14,8 +13,9 @@ class Login extends Component implements HasForms
 {
     use InteractsWithForms;
 
-    public $email, $password;
+    public $email;
 
+    public $password;
 
     protected function getFormSchema(): array
     {
@@ -38,13 +38,14 @@ class Login extends Component implements HasForms
     public function login()
     {
         $data = $this->form->getState();
-        if (Auth::attempt(['email' => $data['email'], 'password' =>  $data['password']])) {
+        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
             session()->regenerate();
+
             return redirect()->route('welcome');
         } else {
             $this->password = '';
             throw ValidationException::withMessages([
-                'email' => 'Invalid credentials.'
+                'email' => 'Invalid credentials.',
             ]);
         }
     }

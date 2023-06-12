@@ -13,18 +13,21 @@ class AuthController extends Controller
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
+
         return redirect()->route('welcome');
     }
 
     public function verificationNotification(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
+
         return back()->with('message', 'Verification link sent!');
     }
 
     public function verificationVerify(EmailVerificationRequest $request)
     {
         $request->fulfill();
+
         return redirect()->route('home');
     }
 }

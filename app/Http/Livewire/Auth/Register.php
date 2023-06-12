@@ -6,19 +6,23 @@ use App\Models\User;
 use Auth;
 use DB;
 use Filament\Forms\Components\Radio;
-use Livewire\Component;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Illuminate\Auth\Events\Registered;
+use Livewire\Component;
 
 class Register extends Component implements HasForms
 {
     use InteractsWithForms;
 
-    public $email, $password, $password_confirmation, $role;
+    public $email;
 
+    public $password;
+
+    public $password_confirmation;
+
+    public $role;
 
     protected function getFormSchema(): array
     {
@@ -68,6 +72,7 @@ class Register extends Component implements HasForms
         event(new Registered($user));
         DB::commit();
         Auth::login($user);
+
         return redirect()->route('home');
     }
 }
