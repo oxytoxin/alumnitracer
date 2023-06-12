@@ -9,9 +9,7 @@ use Awcodes\FilamentTableRepeater\Components\TableRepeater;
 use DB;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Fieldset;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -22,8 +20,6 @@ use Filament\Forms\Components\TextInput\Mask;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\HtmlString;
 use Livewire\Component;
 
 class ManagePersonalInformation extends Component implements HasForms
@@ -31,7 +27,10 @@ class ManagePersonalInformation extends Component implements HasForms
     use InteractsWithForms;
 
     public $data;
+    public $remarks = '';
+
     public $modelExists = false;
+
     public User $user;
 
     protected function getFormModel(): PersonalInformation|string
@@ -40,6 +39,7 @@ class ManagePersonalInformation extends Component implements HasForms
         if ($model) {
             $this->modelExists = true;
         }
+
         return $model ?? PersonalInformation::class;
     }
 
@@ -53,7 +53,8 @@ class ManagePersonalInformation extends Component implements HasForms
             Fieldset::make('Basic Information')
                 ->schema([
                     Textarea::make('bio')
-                        ->placeholder('Write a short description of yourself...')
+                        ->hint('a short description of yourself')
+                        ->placeholder('Write something...')
                         ->maxLength(60000),
                     TextInput::make('current_designation')
                         ->maxLength(125),
@@ -115,7 +116,7 @@ class ManagePersonalInformation extends Component implements HasForms
                     Textarea::make('other_details.remarks')
                         ->rows(2)
                         ->columnSpanFull()
-                        ->label('Awards/Recognition')
+                        ->label('Awards/Recognition'),
                 ])
                 ->orderable(),
             Repeater::make('work_experiences')
@@ -133,12 +134,12 @@ class ManagePersonalInformation extends Component implements HasForms
                         ->required(),
                     DatePicker::make('date_to')
                         ->afterOrEqual('date_from')
-                        ->withoutTime()
-                        ->required(),
+                        ->hint('leave blank if until present')
+                        ->withoutTime(),
                     Textarea::make('other_details.remarks')
                         ->rows(2)
                         ->columnSpanFull()
-                        ->label('Trainings/Recognition')
+                        ->label('Trainings/Recognition'),
                 ])
                 ->orderable(),
             TagsInput::make('skills')->placeholder('Add skills...'),
@@ -149,8 +150,8 @@ class ManagePersonalInformation extends Component implements HasForms
                     TextInput::make('name')
                         ->required(),
                     TextInput::make('contact')
-                        ->label('Email/Contact #')
-                ])
+                        ->label('Email/Contact #'),
+                ]),
         ];
     }
 
@@ -191,6 +192,14 @@ class ManagePersonalInformation extends Component implements HasForms
 
     public function save()
     {
+        try {
+            $this->validate([
+                'remarks' => 'required'
+            ]);
+        } catch (\Throwable $th) {
+            Notification::make()->title('The remarks field is required.')->danger()->send();
+            return 'error';
+        }
         try {
             $data = $this->form->getState();
         } catch (\Throwable $th) {
