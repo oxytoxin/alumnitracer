@@ -1,7 +1,7 @@
 <div>
     <div class="grid grid-cols-ram gap-4 mb-8">
         @foreach ($profiles as $profile)
-            <div class="bg-white border-primary border-2 p-2 flex flex-col">
+            <div class="bg-white dark:bg-slate-800 border-primary border-2 p-2 flex flex-col">
                 <div class="w-32 h-32 mx-auto border-2 border-slate-500">
                     <img class="object-cover object-center" src="{{ $profile->user->avatar?->getUrl() ?? asset('images/user.jpg') }}" alt="profile photo">
                 </div>
