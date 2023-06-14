@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec114cc20970be16cb3bbde193729e93",
+    "content-hash": "bc00b5a218828fee27c9e2867aa2dfd2",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -4373,6 +4373,131 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "resend/resend-laravel",
+            "version": "v0.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/resendlabs/resend-laravel.git",
+                "reference": "2d6245419837798e8826649db181f6bf56118571"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/resendlabs/resend-laravel/zipball/2d6245419837798e8826649db181f6bf56118571",
+                "reference": "2d6245419837798e8826649db181f6bf56118571",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^9.21|^10.0",
+                "php": "^8.1",
+                "resend/resend-php": "^0.7.0",
+                "symfony/mailer": "^6.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.14",
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.22|^8.0",
+                "pestphp/pest": "^1.22"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Resend\\Laravel\\ResendServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Resend\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Resend and contributors",
+                    "homepage": "https://github.com/resendlabs/resend-laravel/contributors"
+                }
+            ],
+            "description": "Resend for Laravel",
+            "homepage": "https://resend.com/",
+            "keywords": [
+                "api",
+                "client",
+                "laravel",
+                "php",
+                "resend",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/resendlabs/resend-laravel/issues",
+                "source": "https://github.com/resendlabs/resend-laravel/tree/v0.3.2"
+            },
+            "time": "2023-06-04T23:29:19+00:00"
+        },
+        {
+            "name": "resend/resend-php",
+            "version": "v0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/resendlabs/resend-php.git",
+                "reference": "9c65084b3fd970faaab779daa79946ae2b074076"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/resendlabs/resend-php/zipball/9c65084b3fd970faaab779daa79946ae2b074076",
+                "reference": "9c65084b3fd970faaab779daa79946ae2b074076",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.5",
+                "php": "^8.1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.13",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-mock": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Resend.php"
+                ],
+                "psr-4": {
+                    "Resend\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Resend and contributors",
+                    "homepage": "https://github.com/resendlabs/resend-php/contributors"
+                }
+            ],
+            "description": "Resend PHP library.",
+            "homepage": "https://resend.com/",
+            "keywords": [
+                "api",
+                "client",
+                "php",
+                "resend",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/resendlabs/resend-php/issues",
+                "source": "https://github.com/resendlabs/resend-php/tree/v0.7.0"
+            },
+            "time": "2023-06-03T13:47:38+00:00"
         },
         {
             "name": "ryangjchandler/blade-capture-directive",
