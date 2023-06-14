@@ -53,6 +53,7 @@ class ManagePersonalInformation extends Component implements HasForms
             Fieldset::make('Basic Information')
                 ->schema([
                     Textarea::make('bio')
+                        ->autofocus()
                         ->hint('a short description of yourself')
                         ->placeholder('Write something...')
                         ->maxLength(60000),
