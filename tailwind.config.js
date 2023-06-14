@@ -15,7 +15,11 @@ module.exports = {
             },
             fontFamily: {
                 poppins: 'Poppins, sans-serif',
-            }
+            },
+            gridTemplateColumns: {
+                // Simple 16 column grid
+                'ram': 'repeat(auto-fill, minmax(190px, 1fr))',
+              }
         },
     },
     plugins: [

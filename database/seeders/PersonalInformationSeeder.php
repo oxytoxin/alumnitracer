@@ -50,7 +50,7 @@ class PersonalInformationSeeder extends Seeder
                 ),
                 'personal_information'
             )
-            ->count(20)
+            ->count(30)
             ->create()
             ->each(function (User $user) {
                 $user->assignRole('alumni');

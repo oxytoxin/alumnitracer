@@ -8,7 +8,6 @@ use Livewire\WithPagination;
 
 class Homepage extends Component
 {
-    use WithPagination;
 
     public function render()
     {
