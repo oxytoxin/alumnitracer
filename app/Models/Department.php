@@ -13,4 +13,9 @@ class Department extends Model
     {
         return $this->morphMany(Affiliation::class, 'entity');
     }
+
+    public function college()
+    {
+        return $this->belongsTo(College::class);
+    }
 }

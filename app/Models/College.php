@@ -13,4 +13,9 @@ class College extends Model
     {
         return $this->morphMany(Affiliation::class, 'entity');
     }
+
+    public function departments()
+    {
+        return $this->hasMany(Department::class);
+    }
 }
