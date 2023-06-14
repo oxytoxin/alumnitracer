@@ -239,9 +239,4 @@ class ManagePersonalInformation extends Component implements HasForms
         $this->reset('remarks');
         Notification::make()->title('Changes saved!')->success()->send();
     }
-
-    public function test()
-    {
-        dd($this->user->personal_information->audits()->count());
-    }
 }
