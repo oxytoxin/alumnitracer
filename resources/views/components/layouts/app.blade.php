@@ -5,7 +5,7 @@
 
 <x-layouts.base :title="$title">
     <div class="filament-app-layout flex h-screen w-full overflow-y-auto overflow-x-clip">
-        <div class="filament-sidebar-close-overlay fixed inset-0 z-20 h-full w-full bg-gray-900/50 lg:hidden" x-data="{}" x-trap.noscroll="$store.sidebar.isOpen" x-cloak x-show="$store.sidebar.isOpen" x-transition.opacity.500ms x-on:click="$store.sidebar.close()"></div>
+        <div class="filament-sidebar-close-overlay fixed inset-0 z-20 h-full w-full bg-gray-900/50 lg:hidden" x-data="{}" x-cloak x-show="$store.sidebar.isOpen" x-transition.opacity.500ms x-on:click="$store.sidebar.close()"></div>
 
         <x-layouts.app.sidebar.index />
 
