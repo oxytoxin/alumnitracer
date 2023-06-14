@@ -162,6 +162,7 @@ class ManagePersonalInformation extends Component implements HasForms
 
     public function mount()
     {
+        abort_unless(auth()->id() == $this->user->id, 403);
         $info = $this->user->personal_information;
         if ($info) {
             $this->form->fill([

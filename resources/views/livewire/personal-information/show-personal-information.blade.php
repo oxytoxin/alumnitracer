@@ -1,16 +1,18 @@
 <div x-data>
-    <div class="flex justify-end gap-2">
-        @if ($personal_information)
-            <x-filament::button @click="printOut($refs.resume.outerHTML, 'ALUMNITRACER RESUME', '{{ Vite::asset('resources/css/app.css') }}')" role="button" color="success" icon="ri-save-3-line">
-                <span>Download</span>
+    @if (auth()->id() == $user->id)
+        <div class="flex justify-end gap-2">
+            @if ($personal_information)
+                <x-filament::button @click="printOut($refs.resume.outerHTML, 'ALUMNITRACER RESUME', '{{ Vite::asset('resources/css/app.css') }}')" role="button" color="success" icon="ri-save-3-line">
+                    <span>Download</span>
+                </x-filament::button>
+            @endif
+            <x-filament::button icon="ri-user-settings-line" tag="a" href="{{ route('personal-information.manage', [
+                'user' => auth()->id(),
+            ]) }}">
+                <span>Manage</span>
             </x-filament::button>
-        @endif
-        <x-filament::button icon="ri-user-settings-line" tag="a" href="{{ route('personal-information.manage', [
-            'user' => auth()->id(),
-        ]) }}">
-            <span>Manage</span>
-        </x-filament::button>
-    </div>
+        </div>
+    @endif
     <div>
         @if ($personal_information)
             <div iv x-ref="resume" class="border-slate-900 dark:border-white dark:divide-white border-2 mt-4 print:mt-0 flex divide-x-2 divide-black">

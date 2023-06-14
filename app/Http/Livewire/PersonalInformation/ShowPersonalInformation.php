@@ -9,11 +9,6 @@ class ShowPersonalInformation extends Component
 {
     public User $user;
 
-    public function mount()
-    {
-        abort_unless(auth()->id() == $this->user->id, 403);
-    }
-
     public function render()
     {
         return view('livewire.personal-information.show-personal-information', [

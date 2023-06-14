@@ -1,3 +1,8 @@
 <div>
-    {{-- The whole world belongs to you. --}}
+    @foreach ($profiles as $profile)
+        <div>
+            {{ $profile->full_name }}
+        </div>
+    @endforeach
+    {{ $profiles->links() }}
 </div>
