@@ -147,7 +147,7 @@
                         <p class="font-semibold text-lg uppercase">References</p>
                         <ul class="space-y-2 mt-4">
                             @forelse ($personal_information->references as $reference)
-                                <li class="flex items-center justify-between">
+                                <li class="flex items-center print:flex-col print:items-start justify-between">
                                     <p class="flex items-center gap-2">
                                         <x-ri-contacts-line />
                                         <span>{{ $reference['name'] }}</span>
