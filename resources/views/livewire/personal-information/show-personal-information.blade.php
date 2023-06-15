@@ -15,11 +15,18 @@
     @endif
     <div>
         @if ($personal_information)
-            <div iv x-ref="resume" class="border-slate-900 dark:border-white dark:divide-white border-2 mt-4 print:mt-0 flex divide-x-2 divide-black">
-                <div class="p-8 print:p-2 w-2/5 flex flex-col">
+            <div iv x-ref="resume" class="border-slate-900 dark:border-white dark:divide-white border-2 mt-4 flex-col md:flex-row print:mt-0 flex md:divide-x-2 divide-black">
+                <div class="md:p-8 p-2 print:p-2 md:w-2/5 flex flex-col">
                     <div class="flex-1">
                         <div class="w-32 h-32 mx-auto overflow-clip rounded-full border-2 border-primary ">
                             <img class="bg-cover bg-center" src="{{ $personal_information->user->avatar?->getUrl() ?? asset('images/user.jpg') }}" alt="profile photo">
+                        </div>
+                        <h1 class="text-2xl md:hidden print:text-2xl font-semibold">{{ $personal_information->full_name }}</h1>
+                        <div class="flex md:hidden items-center gap-2">
+                            @if ($personal_information->post_nominal_designations)
+                                <p class="border inline px-2 bg-primary font-semibold">{{ $personal_information->post_nominal_designations }}</p>
+                            @endif
+                            <p class="">{{ $personal_information->current_designation }}</p>
                         </div>
                         <div class="mt-4">
                             <p class="prose text-xs italic dark:text-white text-center whitespace-pre-line">{{ $personal_information->bio }}</p>
@@ -69,13 +76,13 @@
                             </div>
                         @endif
                     </div>
-                    <div>
+                    <div class="hidden md:block">
                         <p class="text-xs italic">Last Updated: {{ $personal_information->updated_at->format('F d, Y') }}</p>
                     </div>
                 </div>
-                <div class="p-8 print:p-4 w-3/5">
-                    <h1 class="text-4xl print:text-2xl font-semibold">{{ $personal_information->full_name }}</h1>
-                    <div class="flex items-center gap-2 mt-2">
+                <div class="md:p-8 p-2 print:p-4 md:w-3/5">
+                    <h1 class="text-4xl hidden md:block print:text-2xl font-semibold">{{ $personal_information->full_name }}</h1>
+                    <div class="hidden md:flex items-center gap-2 mt-2">
                         @if ($personal_information->post_nominal_designations)
                             <p class="border inline px-2 bg-primary font-semibold">{{ $personal_information->post_nominal_designations }}</p>
                         @endif
@@ -147,7 +154,7 @@
                         <p class="font-semibold text-lg uppercase">References</p>
                         <ul class="space-y-2 mt-4">
                             @forelse ($personal_information->references as $reference)
-                                <li class="flex items-center print:flex-col print:items-start justify-between">
+                                <li class="flex md:items-center text-sm print:flex-col print:items-start flex-col md:flex-row items-start justify-between">
                                     <p class="flex items-center gap-2">
                                         <x-ri-contacts-line />
                                         <span>{{ $reference['name'] }}</span>
