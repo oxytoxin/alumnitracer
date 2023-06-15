@@ -5,6 +5,7 @@ use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Homepage;
 use App\Http\Livewire\Welcome;
+use App\Http\Middleware\UnverifiedEmail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,5 +36,6 @@ Route::middleware('auth')->group(function () {
         ->middleware('signed')
         ->name('verification.verify');
     Route::view('/email/verify', 'auth.verify-email')
+        ->middleware(UnverifiedEmail::class)
         ->name('verification.notice');
 });
