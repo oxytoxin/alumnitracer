@@ -5,13 +5,11 @@
         </div>
         <h1 class="text-3xl font-bold">ALUMNITRACER</h1>
     </div>
-    <x-filament::card class="w-1/3 mx-auto">
-        <form wire:submit.prevent="register">
-            {{ $this->form }}
-            <div class="flex flex-col items-end mt-2">
-                <a class="text-sm text-primary mb-2 underline" href="{{ route('login') }}">Already have an account?</a>
-                <x-filament::button type="submit" wire:target="register" class="w-full">REGISTER</x-filament::button>
-            </div>
-        </form>
-    </x-filament::card>
+    <form class="md:w-1/3 w-full px-4 mx-auto" wire:submit.prevent="register">
+        {{ $this->form }}
+        <div class="flex flex-col items-end mt-2">
+            <a class="text-sm text-primary mb-2 underline" href="{{ route('login') }}">Already have an account?</a>
+            <x-filament::button type="submit" wire:target="register" class="w-full">REGISTER</x-filament::button>
+        </div>
+    </form>
 </div>

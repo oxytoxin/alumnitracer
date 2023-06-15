@@ -5,7 +5,7 @@
         </div>
         <h1 class="text-3xl font-bold">ALUMNITRACER</h1>
     </div>
-    <form wire:submit.prevent="login" class="w-1/3 mx-auto">
+    <form wire:submit.prevent="login" class="md:w-1/3 w-full px-4 mx-auto">
         {{ $this->form }}
         <div class="flex flex-col items-end mt-2">
             <a class="text-sm text-primary mb-2 underline" href="{{ route('register') }}">Create an account</a>
