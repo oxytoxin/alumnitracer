@@ -12,7 +12,7 @@
 
     <nav class="filament-sidebar-nav flex-1 overflow-y-auto overflow-x-hidden py-4">
         <ul class="space-y-2 flex flex-col px-2">
-            <a href="{{ route('home') }}">
+            <a x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()" href="{{ route('home') }}">
                 <li @class([
                     'flex hover:bg-primary hover:text-white duration-200 p-2 rounded-lg items-center gap-2',
                     'border-l-2 border-b-2 border-primary' => in_array(url()->current(), [
@@ -23,7 +23,7 @@
                     <span>Homepage</span>
                 </li>
             </a>
-            <a href="{{ route('personal-information.show', [
+            <a x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()" href="{{ route('personal-information.show', [
                 'user' => auth()->id(),
             ]) }}">
                 <li @class([
