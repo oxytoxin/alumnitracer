@@ -13,9 +13,15 @@
     <nav class="filament-sidebar-nav flex-1 overflow-y-auto overflow-x-hidden py-6">
 
         <ul class="space-y-6 px-6">
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
+            <a x-on:click="window.matchMedia(`(max-width: 1024px)`).matches && $store.sidebar.close()" href="#">
+                <li @class([
+                    'flex hover:bg-primary hover:text-white duration-200 p-2 rounded-lg items-center gap-2',
+                    'border-l-2 border-b-2 border-primary' => in_array(url()->current(), []),
+                ])>
+                    <x-ri-user-line />
+                    <span>Personal Information</span>
+                </li>
+            </a>
         </ul>
 
     </nav>
